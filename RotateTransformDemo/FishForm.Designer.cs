@@ -46,6 +46,7 @@ namespace RotateTransformDemo
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FishForm";
+            this.Load += new System.EventHandler(this.FishForm_Load);
             this.ResumeLayout(false);
 
         }
