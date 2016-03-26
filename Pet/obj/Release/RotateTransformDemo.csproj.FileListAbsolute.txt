@@ -1,8 +1,0 @@
-F:\myGit\RotateTransformDemo\RotateTransformDemo\bin\Release\RotateTransformDemo.exe
-F:\myGit\RotateTransformDemo\RotateTransformDemo\bin\Release\RotateTransformDemo.pdb
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.FishForm.resources
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.Properties.Resources.resources
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.csproj.GenerateResource.Cache
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.exe
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.pdb
-F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.csprojResolveAssemblyReference.cache
