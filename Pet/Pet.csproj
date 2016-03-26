@@ -76,13 +76,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Win32.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Left.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WinSystem\WinSystem\WinSystem.csproj">
+      <Project>{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}</Project>
+      <Name>WinSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

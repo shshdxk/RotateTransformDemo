@@ -47,7 +47,7 @@ namespace Pet
             this.TopMost = true;
             GetWindowLong(this.Handle, GWL_EXSTYLE);
             SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_TRANSPARENT | WS_EX_LAYERED);
-            //SetLayeredWindowAttributes(this.Handle, 0, 100, LWA_ALPHA);
+            SetLayeredWindowAttributes(this.Handle, 0, 100, LWA_ALPHA);
         }
 
 
@@ -149,7 +149,7 @@ namespace Pet
                     if (stepY < 0.3f) stepY = 0f;
                     stepY = (new Random().Next(2) == 0 ? -1 : 1) * stepY;
                 }
-
+                Console.WriteLine(left + "   " + top);
                 left = (left + (toRight ? 1 : -1) * stepX);
                 top = (top + stepY);
                 FixLeftTop();
@@ -283,7 +283,7 @@ namespace Pet
 
         private void FishForm_Load(object sender, EventArgs e)
         {
-            SetPenetrate();
+            //SetPenetrate();
         }
     }
 }
