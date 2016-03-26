@@ -12,32 +12,6 @@ namespace Pet
 {
     public partial class FishForm : Form
     {
-        private const uint WS_EX_LAYERED = 0x80000;
-        private const int WS_EX_TRANSPARENT = 0x20;
-        private const int GWL_STYLE = (-16);
-        private const int GWL_EXSTYLE = (-20);
-        private const int LWA_ALPHA = 0;
-
-        [DllImport("user32", EntryPoint = "SetWindowLong")]
-        private static extern uint SetWindowLong(
-        IntPtr hwnd,
-        int nIndex,
-        uint dwNewLong
-        );
-
-        [DllImport("user32", EntryPoint = "GetWindowLong")]
-        private static extern uint GetWindowLong(
-        IntPtr hwnd,
-        int nIndex
-        );
-
-        [DllImport("user32", EntryPoint = "SetLayeredWindowAttributes")]
-        private static extern int SetLayeredWindowAttributes(
-        IntPtr hwnd,
-        int crKey,
-        int bAlpha,
-        int dwFlags
-        );
 
         /// <summary> 
         /// 设置窗体具有鼠标穿透效果 
@@ -45,9 +19,8 @@ namespace Pet
         public void SetPenetrate()
         {
             this.TopMost = true;
-            GetWindowLong(this.Handle, GWL_EXSTYLE);
-            SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_TRANSPARENT | WS_EX_LAYERED);
-            SetLayeredWindowAttributes(this.Handle, 0, 100, LWA_ALPHA);
+            Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
+            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
         }
 
 
@@ -79,14 +52,14 @@ namespace Pet
             left = -frameWidth;
             top = Screen.PrimaryScreen.WorkingArea.Height / 2f;
 
-            timerSpeed.Interval = 50;
+            timerSpeed.Interval = 20;
             timerSpeed.Enabled = true;
             timerSpeed.Tick += new EventHandler(timerSpeed_Tick);
 
-            this.DoubleClick += new EventHandler(Form2_DoubleClick);
             this.MouseDown += new MouseEventHandler(Form2_MouseDown);
             this.MouseUp += new MouseEventHandler(Form2_MouseUp);
             this.MouseMove += new MouseEventHandler(Form2_MouseMove);
+            SetPenetrate();
         }
 
         #region 重载
@@ -149,7 +122,6 @@ namespace Pet
                     if (stepY < 0.3f) stepY = 0f;
                     stepY = (new Random().Next(2) == 0 ? -1 : 1) * stepY;
                 }
-                Console.WriteLine(left + "   " + top);
                 left = (left + (toRight ? 1 : -1) * stepX);
                 top = (top + stepY);
                 FixLeftTop();
@@ -216,11 +188,6 @@ namespace Pet
             }
         }
 
-        void Form2_DoubleClick(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
         void Form2_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
@@ -284,6 +251,11 @@ namespace Pet
         private void FishForm_Load(object sender, EventArgs e)
         {
             //SetPenetrate();
+        }
+
+        private void FishForm_DoubleClick(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

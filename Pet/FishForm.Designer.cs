@@ -47,6 +47,7 @@ namespace Pet
             this.ShowInTaskbar = false;
             this.Text = "FishForm";
             this.Load += new System.EventHandler(this.FishForm_Load);
+            this.DoubleClick += new System.EventHandler(this.FishForm_DoubleClick);
             this.ResumeLayout(false);
 
         }
