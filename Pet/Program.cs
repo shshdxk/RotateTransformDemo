@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace RotateTransformDemo
+namespace Pet
 {
     static class Program
     {

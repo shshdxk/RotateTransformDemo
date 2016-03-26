@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotateTransformDemo", "RotateTransformDemo\RotateTransformDemo.csproj", "{064EAFA0-C82D-42BF-9E83-8FACB5510745}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet", "Pet\Pet.csproj", "{064EAFA0-C82D-42BF-9E83-8FACB5510745}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,7 @@
 //★★★★★★★        华普软件 - VB6 & C#.NET专业论文与源码荟萃        ★★★★★★★
 //#####################################################################################
 
-namespace RotateTransformDemo
+namespace Pet
 {
     partial class FishForm
     {

@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using WinSystem;
 
-namespace RotateTransformDemo
+namespace Pet
 {
     public partial class FishForm : Form
     {
@@ -247,36 +248,36 @@ namespace RotateTransformDemo
                 throw new ApplicationException("图片必须是32位带Alhpa通道的图片。");
 
             IntPtr oldBits = IntPtr.Zero;
-            IntPtr screenDC = Win32.GetDC(IntPtr.Zero);
+            IntPtr screenDC = Win32Api.GetDC(IntPtr.Zero);
             IntPtr hBitmap = IntPtr.Zero;
-            IntPtr memDc = Win32.CreateCompatibleDC(screenDC);
+            IntPtr memDc = Win32Api.CreateCompatibleDC(screenDC);
 
             try
             {
-                Win32.Point topLoc = new Win32.Point(Left, Top);
-                Win32.Size bitMapSize = new Win32.Size(bitmap.Width, bitmap.Height);
-                Win32.BLENDFUNCTION blendFunc = new Win32.BLENDFUNCTION();
-                Win32.Point srcLoc = new Win32.Point(0, 0);
+                Win32Api.POINT topLoc = new Win32Api.POINT(Left, Top);
+                Win32Api.Size bitMapSize = new Win32Api.Size(bitmap.Width, bitmap.Height);
+                Win32Api.BLENDFUNCTION blendFunc = new Win32Api.BLENDFUNCTION();
+                Win32Api.POINT srcLoc = new Win32Api.POINT(0, 0);
 
                 hBitmap = bitmap.GetHbitmap(Color.FromArgb(0));
-                oldBits = Win32.SelectObject(memDc, hBitmap);
+                oldBits = Win32Api.SelectObject(memDc, hBitmap);
 
-                blendFunc.BlendOp = Win32.AC_SRC_OVER;
+                blendFunc.BlendOp = Win32Api.AC_SRC_OVER;
                 blendFunc.SourceConstantAlpha = 255;
-                blendFunc.AlphaFormat = Win32.AC_SRC_ALPHA;
+                blendFunc.AlphaFormat = Win32Api.AC_SRC_ALPHA;
                 blendFunc.BlendFlags = 0;
 
-                Win32.UpdateLayeredWindow(Handle, screenDC, ref topLoc, ref bitMapSize, memDc, ref srcLoc, 0, ref blendFunc, Win32.ULW_ALPHA);
+                Win32Api.UpdateLayeredWindow(Handle, screenDC, ref topLoc, ref bitMapSize, memDc, ref srcLoc, 0, ref blendFunc, Win32Api.ULW_ALPHA);
             }
             finally
             {
                 if (hBitmap != IntPtr.Zero)
                 {
-                    Win32.SelectObject(memDc, oldBits);
-                    Win32.DeleteObject(hBitmap);
+                    Win32Api.SelectObject(memDc, oldBits);
+                    Win32Api.DeleteObject(hBitmap);
                 }
-                Win32.ReleaseDC(IntPtr.Zero, screenDC);
-                Win32.DeleteDC(memDc);
+                Win32Api.ReleaseDC(IntPtr.Zero, screenDC);
+                Win32Api.DeleteDC(memDc);
             }
         }
 

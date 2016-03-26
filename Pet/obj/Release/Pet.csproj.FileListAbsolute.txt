@@ -1,0 +1,14 @@
+F:\myGit\RotateTransformDemo\RotateTransformDemo\bin\Release\RotateTransformDemo.exe
+F:\myGit\RotateTransformDemo\RotateTransformDemo\bin\Release\RotateTransformDemo.pdb
+F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\Pet.FishForm.resources
+F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.Properties.Resources.resources
+F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\Pet.csproj.GenerateResource.Cache
+F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.exe
+F:\myGit\RotateTransformDemo\RotateTransformDemo\obj\Release\RotateTransformDemo.pdb
+F:\myGit\RotateTransformDemo\Pet\obj\Release\RotateTransformDemo.exe
+F:\myGit\RotateTransformDemo\Pet\obj\Release\RotateTransformDemo.pdb
+F:\myGit\RotateTransformDemo\Pet\bin\Release\RotateTransformDemo.exe
+F:\myGit\RotateTransformDemo\Pet\bin\Release\RotateTransformDemo.pdb
+F:\myGit\RotateTransformDemo\Pet\obj\Release\Pet.FishForm.resources
+F:\myGit\RotateTransformDemo\Pet\obj\Release\RotateTransformDemo.Properties.Resources.resources
+F:\myGit\RotateTransformDemo\Pet\obj\Release\Pet.csproj.GenerateResource.Cache
