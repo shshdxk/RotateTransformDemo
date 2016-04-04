@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet", "Pet\Pet.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinSystem", "..\WinSystem\WinSystem\WinSystem.csproj", "{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rep", "Rep\Rep.csproj", "{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,17 @@ Global
 		{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}.Release|x86.ActiveCfg = Release|Any CPU
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Debug|x86.ActiveCfg = Debug|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Debug|x86.Build.0 = Debug|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|x86.ActiveCfg = Release|x86
+		{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

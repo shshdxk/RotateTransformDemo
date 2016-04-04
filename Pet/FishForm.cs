@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using WinSystem;
+using Rep;
 
 namespace Pet
 {
@@ -269,6 +270,7 @@ namespace Pet
         {
             //Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
             Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
+            l = Life.getInstance();
         }
 
         private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -284,6 +286,24 @@ namespace Pet
         private void 恢复ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, 0xD0000);
+        }
+
+        private Life l = null;
+
+        private void 吃ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int p = l.EatDrink.EatPoint;
+            l.EatDrink.EatPoint = p + 100;
+
+            Console.WriteLine("饱食度：" + l.EatDrink.EatPoint + "，清洁度：" + l.Clean.CleanPoint);
+        }
+
+        private void 洗ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int p = l.Clean.CleanPoint;
+            l.Clean.CleanPoint = p + 100;
+
+            Console.WriteLine("饱食度：" + l.EatDrink.EatPoint + "，清洁度：" + l.Clean.CleanPoint);
         }
     }
 }

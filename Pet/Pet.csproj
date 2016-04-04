@@ -106,6 +106,10 @@
       <Project>{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}</Project>
       <Name>WinSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rep\Rep.csproj">
+      <Project>{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}</Project>
+      <Name>Rep</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="pic\Left.png">
