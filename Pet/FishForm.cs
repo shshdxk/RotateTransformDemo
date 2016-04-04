@@ -18,7 +18,7 @@ namespace Pet
         /// </summary> 
         public void SetPenetrate()
         {
-            this.TopMost = true;
+            //this.TopMost = true;
             Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
             Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
         }
@@ -59,7 +59,7 @@ namespace Pet
             this.MouseDown += new MouseEventHandler(Form2_MouseDown);
             this.MouseUp += new MouseEventHandler(Form2_MouseUp);
             this.MouseMove += new MouseEventHandler(Form2_MouseMove);
-            SetPenetrate();
+            //SetPenetrate();
         }
 
         #region ÷ÿ‘ÿ
@@ -168,10 +168,37 @@ namespace Pet
             get
             {
                 if (toRight)
-                    return RotateTransformDemo.Properties.Resources.Right;
+                    //return Pet.Properties.Resources.Right;
+                    //return Pic.RightP;
+                    return getRight();
                 else
-                    return RotateTransformDemo.Properties.Resources.Left;
+                    //return Pet.Properties.Resources.Left;
+                    //return Pic.LeftP;
+                    return getLeft();
             }
+        }
+
+        private static Bitmap rightP = new Bitmap("c:\\Resources\\Right.png");
+
+        private static Bitmap getRight()
+        {
+            //if (rightP == null)
+            //{
+            //    Console.WriteLine("r");
+            //    rightP = new Bitmap("c:\\Right.png");
+            //}
+            return rightP;
+        }
+        private static Bitmap leftP = new Bitmap("c:\\Resources\\Left.png");
+
+        private static Bitmap getLeft()
+        {
+            //if (leftP == null)
+            //{
+            //    Console.WriteLine("l");
+            //    leftP = new Bitmap("c:\\Left.png");
+            //}
+            return leftP;
         }
 
         /// <summary>
@@ -250,10 +277,10 @@ namespace Pet
 
         private void FishForm_Load(object sender, EventArgs e)
         {
-            //SetPenetrate();
+            SetPenetrate();
         }
 
-        private void FishForm_DoubleClick(object sender, EventArgs e)
+        private void πÿ±’ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }

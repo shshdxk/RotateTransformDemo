@@ -33,7 +33,42 @@ namespace Pet
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FishForm));
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStripIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.关闭ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripIcon.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStripIcon;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "宠物";
+            this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStripIcon
+            // 
+            this.contextMenuStripIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.显示ToolStripMenuItem,
+            this.关闭ToolStripMenuItem});
+            this.contextMenuStripIcon.Name = "contextMenuStripIcon";
+            this.contextMenuStripIcon.Size = new System.Drawing.Size(153, 70);
+            // 
+            // 关闭ToolStripMenuItem
+            // 
+            this.关闭ToolStripMenuItem.Name = "关闭ToolStripMenuItem";
+            this.关闭ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关闭ToolStripMenuItem.Text = "退出";
+            this.关闭ToolStripMenuItem.Click += new System.EventHandler(this.关闭ToolStripMenuItem_Click);
+            // 
+            // 显示ToolStripMenuItem
+            // 
+            this.显示ToolStripMenuItem.Name = "显示ToolStripMenuItem";
+            this.显示ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.显示ToolStripMenuItem.Text = "显示";
             // 
             // FishForm
             // 
@@ -42,16 +77,21 @@ namespace Pet
             this.ClientSize = new System.Drawing.Size(211, 113);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FishForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "FishForm";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FishForm_Load);
-            this.DoubleClick += new System.EventHandler(this.FishForm_DoubleClick);
+            this.contextMenuStripIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripIcon;
+        private System.Windows.Forms.ToolStripMenuItem 关闭ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
     }
 }
