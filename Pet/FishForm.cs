@@ -12,18 +12,6 @@ namespace Pet
 {
     public partial class FishForm : Form
     {
-
-        /// <summary> 
-        /// 设置窗体具有鼠标穿透效果 
-        /// </summary> 
-        public void SetPenetrate()
-        {
-            //this.TopMost = true;
-            Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
-            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
-        }
-
-
         Point oldPoint = new Point(0, 0);
         bool mouseDown = false;
         bool haveHandle = false;
@@ -229,9 +217,11 @@ namespace Pet
 
         void Form2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) this.Dispose();
-            oldPoint = e.Location;
-            mouseDown = true;
+            if (e.Button == MouseButtons.Left)
+            {
+                oldPoint = e.Location;
+                mouseDown = true;
+            }
         }
 
         public void SetBits(Bitmap bitmap)
@@ -277,12 +267,23 @@ namespace Pet
 
         private void FishForm_Load(object sender, EventArgs e)
         {
-            SetPenetrate();
+            //Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
+            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
         }
 
         private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void 穿透ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
+        }
+
+        private void 恢复ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, 0xD0000);
         }
     }
 }
