@@ -17,6 +17,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicMenu.cs" />
     <Compile Include="FishForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,7 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,10 +108,17 @@
     <ProjectReference Include="..\..\WinSystem\WinSystem\WinSystem.csproj">
       <Project>{B3BD6804-799F-4B7D-AB8B-28F414FDC35D}</Project>
       <Name>WinSystem</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Iplugins\Iplugins.csproj">
+      <Project>{DE73BE67-6B5B-4808-B4D6-B4E678DA6557}</Project>
+      <Name>Iplugins</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Rep\Rep.csproj">
       <Project>{5D45D812-2C50-40BA-89AA-E4CDE707C7BE}</Project>
       <Name>Rep</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

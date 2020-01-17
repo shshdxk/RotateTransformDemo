@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using WinSystem;
 using Rep;
+using System.IO;
+using System.Reflection;
 
 namespace Pet
 {
@@ -24,11 +26,13 @@ namespace Pet
         bool speedMode = false;
         float left = 0f, top = 0f;
 
-        bool toRight = true;        // «∑ÒœÚ”“
-        int frameCount = 20;        //◊‹÷° ˝
-        int frame = 0;              //µ±«∞÷°
-        int frameWidth = 100;       //√ø÷°øÌ∂»
-        int frameHeight = 100;      //√ø÷°∏ﬂ∂»
+        Random r = new Random();
+
+        bool toRight = true;        //ÊòØÂê¶ÂêëÂè≥
+        int frameCount = 20;        //ÊÄªÂ∏ßÊï∞
+        int frame = 0;              //ÂΩìÂâçÂ∏ß
+        int frameWidth = 100;       //ÊØèÂ∏ßÂÆΩÂ∫¶
+        int frameHeight = 100;      //ÊØèÂ∏ßÈ´òÂ∫¶
 
         public FishForm()
         {
@@ -51,7 +55,7 @@ namespace Pet
             //SetPenetrate();
         }
 
-        #region ÷ÿ‘ÿ
+        #region ÈáçËΩΩ
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -82,8 +86,8 @@ namespace Pet
         void Form2_MouseUp(object sender, MouseEventArgs e)
         {
             count = 0;
-            MaxCount = new Random().Next(70) + 40;
-            timerSpeed.Interval = new Random().Next(20) + 2;
+            MaxCount = r.Next(70) + 40;
+            timerSpeed.Interval = r.Next(20) + 2;
             speedMode = true;
             mouseDown = false;
         }
@@ -94,7 +98,8 @@ namespace Pet
             SetStyle(ControlStyles.UserPaint, true);
             UpdateStyles();
         }
-
+        float y = 0f;
+        int countN = 0;
         void timerSpeed_Tick(object sender, EventArgs e)
         {
             if (!mouseDown)
@@ -102,14 +107,18 @@ namespace Pet
                 count++;
                 if (count > MaxCount)
                 {
-                    MaxCount = new Random().Next(70) + 30;
+                    MaxCount = r.Next(70) + 30;
                     if (speedMode) timerSpeed.Interval = 50;
 
                     count = 0;
-                    stepX = (float)new Random().NextDouble() * 3f + 1f;
-                    stepY = (float)new Random().NextDouble() * 0.5f;
+                    stepX = (float)r.NextDouble() * 3f + 1f;
+                    stepY = (float)r.NextDouble() * 2f;
                     if (stepY < 0.3f) stepY = 0f;
-                    stepY = (new Random().Next(2) == 0 ? -1 : 1) * stepY;
+                    int s = r.Next(2);
+                    countN++;
+                    stepY = (s == 0 ? -1 : 1) * stepY;
+                    y += stepY;
+                    //Console.WriteLine(y + "  " + stepY + "  " + (y / countN));
                 }
                 left = (left + (toRight ? 1 : -1) * stepX);
                 top = (top + stepY);
@@ -125,24 +134,24 @@ namespace Pet
 
         private void FixLeftTop()
         {
-            if (toRight && left > Screen.PrimaryScreen.WorkingArea.Width)
+            if (toRight && left > 1000)
             {
                 toRight = false;
                 frame = 0;
                 count = 0;
             }
-            else if (!toRight && left < -frameWidth)
+            else if (!toRight && left < 100)
             {
                 toRight = true;
                 frame = 0;
                 count = 0;
             }
-            if (top < -frameHeight)
+            if (top < 100)
             {
                 stepY = 1f;
                 count = 0;
             }
-            else if (top > Screen.PrimaryScreen.WorkingArea.Height)
+            else if (top > 700)
             {
                 stepY = -1f;
                 count = 0;
@@ -150,7 +159,7 @@ namespace Pet
         }
 
         /// <summary>
-        /// ±≥æ∞Õº∆¨
+        /// ËÉåÊôØÂõæÁâá
         /// </summary>
         private Image FullImage
         {
@@ -190,17 +199,25 @@ namespace Pet
             return leftP;
         }
 
+        private Dictionary<string, Bitmap> picTemp = new Dictionary<string, Bitmap>();
+
         /// <summary>
-        /// ∑µªÿµ±«∞÷°Õº∆¨
+        /// ËøîÂõûÂΩìÂâçÂ∏ßÂõæÁâá
         /// </summary>
         public Bitmap FrameImage
         {
             get
             {
-                Bitmap bitmap = new Bitmap(frameWidth, frameHeight);
-                Graphics g = Graphics.FromImage(bitmap);
-                g.DrawImage(FullImage, new Rectangle(0, 0, bitmap.Width, bitmap.Height), new Rectangle(frameWidth * frame, 0, frameWidth, frameHeight), GraphicsUnit.Pixel);
-                return bitmap;
+                string key = toRight + ":" + frame;
+                if (!picTemp.ContainsKey(key))
+                {
+
+                    Bitmap bitmap = new Bitmap(frameWidth, frameHeight);
+                    Graphics g = Graphics.FromImage(bitmap);
+                    g.DrawImage(FullImage, new Rectangle(0, 0, bitmap.Width, bitmap.Height), new Rectangle(frameWidth * frame, 0, frameWidth, frameHeight), GraphicsUnit.Pixel);
+                    picTemp.Add(key, bitmap);
+                }
+                return picTemp[key];
             }
         }
 
@@ -230,7 +247,7 @@ namespace Pet
             if (!haveHandle) return;
 
             if (!Bitmap.IsCanonicalPixelFormat(bitmap.PixelFormat) || !Bitmap.IsAlphaPixelFormat(bitmap.PixelFormat))
-                throw new ApplicationException("Õº∆¨±ÿ–Î «32Œª¥¯AlhpaÕ®µ¿µƒÕº∆¨°£");
+                throw new ApplicationException("ÂõæÁâáÂøÖÈ°ªÊòØ32‰ΩçÂ∏¶AlhpaÈÄöÈÅìÁöÑÂõæÁâá„ÄÇ");
 
             IntPtr oldBits = IntPtr.Zero;
             IntPtr screenDC = Win32Api.GetDC(IntPtr.Zero);
@@ -269,41 +286,50 @@ namespace Pet
         private void FishForm_Load(object sender, EventArgs e)
         {
             //Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE);
+            //Console.WriteLine(Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE));
             Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
+            //Console.WriteLine(Win32Api.GetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE));
             l = Life.getInstance();
+            DynamicMenu.LoadAllPlugs(this.contextMenuStripIcon);
         }
 
-        private void πÿ±’ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ÂÖ≥Èó≠ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DynamicMenu.closeAllPlugins();
             this.Dispose();
         }
 
-        private void ¥©Õ∏ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Á©øÈÄèToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, Win32Api.WS_EX_TRANSPARENT | Win32Api.WS_EX_LAYERED);
         }
 
-        private void ª÷∏¥ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ÊÅ¢Â§çToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, 0xD0000);
+            Win32Api.SetWindowLong(this.Handle, Win32Api.GWL_EXSTYLE, 0x90000);
         }
 
         private Life l = null;
 
-        private void ≥‘ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ÂêÉToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int p = l.EatDrink.EatPoint;
             l.EatDrink.EatPoint = p + 100;
 
-            Console.WriteLine("±• ≥∂»£∫" + l.EatDrink.EatPoint + "£¨«ÂΩ‡∂»£∫" + l.Clean.CleanPoint);
+            Console.WriteLine("È•±È£üÂ∫¶Ôºö" + l.EatDrink.EatPoint + "ÔºåÊ∏ÖÊ¥ÅÂ∫¶Ôºö" + l.Clean.CleanPoint);
         }
 
-        private void œ¥ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Ê¥óToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int p = l.Clean.CleanPoint;
             l.Clean.CleanPoint = p + 100;
 
-            Console.WriteLine("±• ≥∂»£∫" + l.EatDrink.EatPoint + "£¨«ÂΩ‡∂»£∫" + l.Clean.CleanPoint);
+            Console.WriteLine("È•±È£üÂ∫¶Ôºö" + l.EatDrink.EatPoint + "ÔºåÊ∏ÖÊ¥ÅÂ∫¶Ôºö" + l.Clean.CleanPoint);
+        }
+
+        private void FishForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }
